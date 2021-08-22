@@ -1,4 +1,4 @@
-package ru.butakov.springdemo.reeper1;
+package ru.butakov.springdemo.reeper1.bpp;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

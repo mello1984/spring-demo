@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ru.butakov.springdemo.reeper1.bpp.InjectNedStarkDecisionBeanPostProcessor;
+import ru.butakov.springdemo.reeper1.bpp.SendToTheWallBeanPostProcessor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,7 +20,9 @@ class JohnSnowImplTest {
     Heir heir;
 
     @Configuration
-    @Import({JohnSnowImpl.class, InjectNedStarkDecisionBeanPostProcessor.class})
+    @Import({JohnSnowImpl.class,
+            InjectNedStarkDecisionBeanPostProcessor.class,
+            SendToTheWallBeanPostProcessor.class})
     static class TestConfiguration {
     }
 
