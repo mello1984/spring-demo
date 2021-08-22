@@ -3,8 +3,9 @@ package ru.butakov.springdemo.reeper1;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
-import ru.butakov.springdemo.reeper1.bpp.InjectNedStarkDecision;
-import ru.butakov.springdemo.reeper1.bpp.SendToTheWall;
+import ru.butakov.springdemo.reeper1.context.InjectNedStarkDecision;
+import ru.butakov.springdemo.reeper1.context.PostProxy;
+import ru.butakov.springdemo.reeper1.context.SendToTheWall;
 
 import javax.annotation.PostConstruct;
 
@@ -29,8 +30,9 @@ public class JohnSnowImpl implements Heir {
     }
 
     @Override
-    public String sayMessage() {
-        return message;
+    @PostProxy
+    public void sayMessage() {
+        System.out.println(this.getClass().getSimpleName() + ": " + message);
     }
 
 

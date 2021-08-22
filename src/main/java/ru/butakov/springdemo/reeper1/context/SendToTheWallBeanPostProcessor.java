@@ -1,4 +1,4 @@
-package ru.butakov.springdemo.reeper1.bpp;
+package ru.butakov.springdemo.reeper1.context;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

@@ -7,14 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import ru.butakov.springdemo.reeper1.bpp.InjectNedStarkDecisionBeanPostProcessor;
-import ru.butakov.springdemo.reeper1.bpp.SendToTheWallBeanPostProcessor;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import ru.butakov.springdemo.reeper1.context.InjectNedStarkDecisionBeanPostProcessor;
+import ru.butakov.springdemo.reeper1.context.PostProxyContextListener;
+import ru.butakov.springdemo.reeper1.context.SendToTheWallBeanPostProcessor;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-//@ContextConfiguration(classes = SpringDemoApplication.class)
 class JohnSnowImplTest {
     @Autowired
     Heir heir;
@@ -22,13 +20,13 @@ class JohnSnowImplTest {
     @Configuration
     @Import({JohnSnowImpl.class,
             InjectNedStarkDecisionBeanPostProcessor.class,
-            SendToTheWallBeanPostProcessor.class})
+            SendToTheWallBeanPostProcessor.class,
+            PostProxyContextListener.class})
     static class TestConfiguration {
     }
 
     @Test
     void sayMessage() {
-        var actual = heir.sayMessage();
-        assertThat(actual).isEqualTo("John, you are bastard, you are John Snow");
+        heir.sayMessage();
     }
 }
