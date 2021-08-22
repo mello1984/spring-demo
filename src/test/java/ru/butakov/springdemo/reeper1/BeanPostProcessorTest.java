@@ -13,7 +13,7 @@ import ru.butakov.springdemo.reeper1.context.SendToTheWallBeanPostProcessor;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-class JohnSnowImplTest {
+class BeanPostProcessorTest {
     @Autowired
     Heir heir;
 
