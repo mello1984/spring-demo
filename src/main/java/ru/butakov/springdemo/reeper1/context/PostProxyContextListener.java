@@ -26,15 +26,17 @@ public class PostProxyContextListener implements ApplicationListener<ContextRefr
         for (String name : names) {
             var beanDefinition = factory.getBeanDefinition(name);
             var originalClassName = beanDefinition.getBeanClassName();
-            var originalClass = Class.forName(originalClassName);
-            var methods = originalClass.getDeclaredMethods();
-            for (Method method : methods) {
-                if (method.getAnnotation(PostProxy.class) != null) {
-                    Object bean = context.getBean(name);
-                    var targetMethod = bean.getClass().getMethod(method.getName(), method.getParameterTypes());
-                    System.out.println("POST_PROXY_LISTENER BEFORE");
-                    ReflectionUtils.invokeMethod(targetMethod, bean);
-                    System.out.println("POST_PROXY_LISTENER AFTER");
+            if (originalClassName != null) {
+                var originalClass = Class.forName(originalClassName);
+                var methods = originalClass.getDeclaredMethods();
+                for (Method method : methods) {
+                    if (method.getAnnotation(PostProxy.class) != null) {
+                        Object bean = context.getBean(name);
+                        var targetMethod = bean.getClass().getMethod(method.getName(), method.getParameterTypes());
+                        System.out.println("POST_PROXY_LISTENER BEFORE");
+                        ReflectionUtils.invokeMethod(targetMethod, bean);
+                        System.out.println("POST_PROXY_LISTENER AFTER");
+                    }
                 }
             }
         }

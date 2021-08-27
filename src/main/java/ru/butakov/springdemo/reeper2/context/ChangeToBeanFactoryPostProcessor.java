@@ -16,10 +16,12 @@ public class ChangeToBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         for (String name : names) {
             var beanDefinition = beanFactory.getBeanDefinition(name);
             var className = beanDefinition.getBeanClassName();
-            var beanClass = Class.forName(className);
-            var annotation = beanClass.getAnnotation(ChangeTo.class);
-            if (annotation != null) {
-                beanDefinition.setBeanClassName(annotation.to().getName());
+            if (className != null) {
+                var beanClass = Class.forName(className);
+                var annotation = beanClass.getAnnotation(ChangeTo.class);
+                if (annotation != null) {
+                    beanDefinition.setBeanClassName(annotation.to().getName());
+                }
             }
         }
     }
