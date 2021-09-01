@@ -13,13 +13,18 @@ public class MyController {
         return ResponseEntity.ok("index page");
     }
 
-    @GetMapping("/api/custom/{id}")
-    public ResponseEntity<String> api(@PathVariable int id) {
-        return ResponseEntity.ok("api page, id=" + id);
-    }
-
-    @GetMapping("/no_filter/")
+    @GetMapping("/throw")
     public ResponseEntity<String> noFilter() {
         throw new MyException("MyController: i'm evil md");
+    }
+
+    @GetMapping("/api/path1/{id}")
+    public ResponseEntity<String> api1(@PathVariable int id) {
+        return ResponseEntity.ok("/api/path1/ page, id=" + id);
+    }
+
+    @GetMapping("/api/path2/{id}")
+    public ResponseEntity<String> api2(@PathVariable int id) {
+        return ResponseEntity.ok("/api/path2/ page, id=" + id);
     }
 }

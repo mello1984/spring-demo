@@ -10,6 +10,7 @@ public class MyAdvice {
 
     @ExceptionHandler(MyException.class)
     public ResponseEntity<Object> handle(MyException e) {
+        System.out.println(this.getClass().getSimpleName()+" i handle!");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 }
