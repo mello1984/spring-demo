@@ -28,10 +28,14 @@ ext {
 dependencies {
 //    implementation "org.springframework.boot:spring-boot-starter-parent:${versions.spring}"
     implementation "org.springframework.boot:spring-boot-starter-web:${versions.spring}"
+    implementation "org.springframework.boot:spring-boot-starter-websocket:${versions.spring}"
     implementation "org.springframework.boot:spring-boot-starter-actuator:${versions.spring}"
     compileOnly "org.projectlombok:lombok:${versions.lombok}"
     annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
     testImplementation "org.springframework.boot:spring-boot-starter-test:${versions.spring}"
+
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.12.5'
+
 }
 
 test {
